@@ -26,6 +26,7 @@ public class Manager extends Employee {
     public void removeNews(String nId){
         Database.getInstance().removeNews(nId);
     }
+    //Методы с запросами
     public List<Request> viewRequests(){
         return Database.getInstance().getRequests();
     }
@@ -37,9 +38,34 @@ public class Manager extends Employee {
         }
     }
 
+    //Методы со студентами
+    public void approveStudentRegistration(String id){
+        for(Student s : Database.getInstance().getStudents()){
+            if (s.getId().equals(id)){
+                s.setRegistrationApproved(true);
+            }
+        }
+    }
+    public List<Student> viewStudents(){
+        return Database.getInstance().getStudents();
+    }
+
+    //Методы с учителями
+    public List<Teacher> viewTeachers(){
+        return Database.getInstance().getTeachers();
+    }
+    public void assignCourseToTeacher(String teacherId, Course course){
+        for(Teacher t : Database.getInstance().getTeachers()){
+            if (t.getId().equals(teacherId)) {
+                t.addCourse(course);
+                Database.getInstance().addCourse(course);
+            }
+        }
+    }
+
     @Override
-    public void displayInfo(){
-        super.displayInfo();
+    public void printInfo(){
+        super.printInfo();
         System.out.println("Manager Type: " + managerType);
     }
 }
