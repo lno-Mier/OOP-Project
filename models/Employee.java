@@ -1,19 +1,25 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import enums.School;
 
 public abstract class Employee extends User {
-    private Double salary;
-    private School department;
+    private static final long serialVersionUID = 1L;
 
-    public Employee(String id, String firstName, String lastName, String login, String password, Double salary, School department) {
+    private double salary;
+    private School department;
+    private List<Message> inbox = new ArrayList<>();
+
+    public Employee(String id, String firstName, String lastName, String login, String password, double salary, School department) {
         super(id, firstName, lastName, login, password);
         this.salary = salary;
         this.department = department;
     }
 
-    //Геттер для департамента, для зп не нужно
-    public Double getSalary() {
+    // Геттеры
+    public double getSalary() {
         return salary;
     }
 
@@ -21,9 +27,21 @@ public abstract class Employee extends User {
         return department;
     }
 
+    public List<Message> getInbox() {
+        return inbox;
+    }
+
+    public void receiveMessage(Message msg) {
+        inbox.add(msg);
+    }
+
+    public void sendMessage(Employee to, String text) {
+        to.receiveMessage(new Message(this, to, text));
+    }
+
     @Override
-    public void displayInfo(){
-        System.out.println("Name: " + getFirstName() + " " + getLastName());
+    public void printInfo() {
+        super.printInfo(); // Выведет ID, Name
         System.out.println("Department: " + department);
     }
 }
