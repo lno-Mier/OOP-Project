@@ -1,25 +1,28 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import enums.School;
 
 public class Student extends User {
-    //Джига если надо сами тут измените. Мне просто для Менеджера надо было это создать.
-
+    private static final long serialVersionUID = 1L;
 
     private Double gpa;
     private int year;
     private School major;
-    private boolean isRegistrationApproved;
+    private List<Course> registeredCourses = new ArrayList<>();
+    // private Transcript transcript;
+    private ResearcherProfile researcherProfile;
 
-    public Student(String id, String firstName, String lastName, String login, String password, Double gpa, int year, School major, boolean isRegistrationApproved) {
+    public Student(String id, String firstName, String lastName, String login, String password, Double gpa, int year, School major) {
         super(id, firstName, lastName, login, password);
         this.gpa = gpa;
         this.year = year;
         this.major = major;
-        this.isRegistrationApproved = isRegistrationApproved;
     }
 
-    //Геттеры для студента
+    // Геттеры
     public Double getGpa() {
         return gpa;
     }
@@ -29,12 +32,17 @@ public class Student extends User {
     public School getMajor() {
         return major;
     }
-    public boolean IsRegistrationApproved() {
-        return isRegistrationApproved;
+    public ResearcherProfile getResearcherProfile() { 
+        return researcherProfile; 
     }
 
-    public void setRegistrationApproved(boolean isRegestrationApproved) {
-        this.isRegistrationApproved = isRegestrationApproved;
+    public boolean isResearcher() { 
+        return researcherProfile != null; 
+    }
+    
+    public void makeResearcher() {
+        if (researcherProfile == null)
+            researcherProfile = new ResearcherProfile();
     }
 
     @Override
