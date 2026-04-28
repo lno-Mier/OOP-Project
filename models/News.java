@@ -1,18 +1,21 @@
 package models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class News {
+public class News implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String nId;
     private String title;
     private String content;
     private LocalDateTime date;
 
-    public News(String nId, String title, String content, LocalDateTime date){
+    public News(String nId, String title, String content) {
         this.nId = nId;
         this.title = title;
         this.content = content;
-        this.date = date;
+        this.date = LocalDateTime.now();
     }
 
     //Геттеры

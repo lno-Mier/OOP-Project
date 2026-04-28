@@ -1,22 +1,23 @@
 package models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import enums.RequestStatus;
 
-public class Request {
+public class Request implements Serializable {
     private String rId;
     private Employee author;
     private String description;
     private RequestStatus status;
     private LocalDateTime createdAt;
 
-    public Request(String rId, Employee author, String description, RequestStatus status, LocalDateTime createdAt){
+    public Request(String rId, Employee author, String description) {
         this.rId = rId;
         this.author = author;
         this.description = description;
-        this.status = status;
-        this.createdAt = createdAt;
+        this.status = RequestStatus.PENDING;
+        this.createdAt = LocalDateTime.now();
     }
 
     //Геттеры

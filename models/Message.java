@@ -1,9 +1,11 @@
 package models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
+public class Message implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-public class Message {
     private Employee sender;     
     private Employee receiver;   
     private String text;         
@@ -22,10 +24,6 @@ public class Message {
     
     public Employee getReceiver() {
          return receiver; 
-    }
-    
-    public Employee getReciever() { 
-        return receiver; 
     }
     
     public String getText() { 

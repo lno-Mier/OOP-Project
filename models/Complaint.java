@@ -1,9 +1,11 @@
 package models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
+public class Complaint implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-public class Complaint {
     private Employee sender;
     private String title;   
     private String text;    
