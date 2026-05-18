@@ -23,7 +23,7 @@ public class Message implements Serializable {
     }
     
     public Employee getReceiver() {
-         return receiver; 
+        return receiver; 
     }
     
     public String getText() { 
